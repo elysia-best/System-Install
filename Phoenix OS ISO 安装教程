@@ -1,0 +1,39 @@
+如果您希望电脑上仅有凤凰系统一个系统，请参照本教程 说明： 1.本教程会清空磁盘数据，请提前做好备份工作； 2.本教程适用于Uefi引导的设备，点击查看如何确认引导方式：http://bbs.phoenixstudio.org/cn/read.php?tid=9074&fid=12
+
+安装前的准备 下载最新版的Phoenix OS ISO版安装镜像，并刻录到U盘；如使用的是Windows操作系统，建议使用UltraISO刻录。 下载地址：http://www.phoenixos.com/download_x86
+
+开始安装
+
+    重启机器，在启动选项中选择U盘启动；选择“Installation Phoenix OS to Harddisk” 2.选择安装磁盘 安装程序会检测磁盘的信息并列出。选择“Create/Modify partitions”新建分区表；
+
+    这时会询问是否使用GPT分区，因为这里使用UEFI引导方式，选择“Yes” 4.此时会进入到分区工具界面，左右方向键选择“New”，首先需要新建一个EFI分区； 5.选择起始位置：直接“Enter”；
+
+    选择分区大小，这里我们填“100M”
+
+    选择分区类型，这里填写“ef00”，为EFI分区；
+
+    填写分区名称：这里可以填入“EFI”；
+
+    创建数据分区 创建好EFI分区后，上下键选择剩余分区的位置，按照上述方式新建一个数据分区（起始位置默认；大小默认；分区格式默认（ext），名字为PhoenixOS）；
+
+    左右方向键选择“Write”，保存我们的修改，分区工具会询问是否确定保存，输入“yes”确认；
+
+    左右方向键选择“Quit”，退出分区工具；
+
+    退出后可以在分区选择列表中看到我们新分的sda1/2，选择sda2安装Phoenix OS； http://cdn.phoenixos.com/cms/bf01f6c5-48b3-4838-b816-fd0dda529097 13.格式化磁盘 Phoenix OS支持安装在EXT4、FAT32和NTFS分区上，本教程选择EXT4分区并确认格式化。 区别： A.EXT4分区：无需定义凤凰系统存储空间大小，可以使用磁盘的剩余空间作为凤凰系统存储空间； B.FAT32分区：需要定义凤凰系统存储空间大小，但由分区特性决定，单个文件最大不能超过4GB； C.NTFS分区：单个文件没有大小限制，其余与FAT32特性相同；
+
+    是否安装EFI引导项：选择“Yes”；
+
+    选择EFI分区的位置：选择/dev/sda1；
+
+    格式化EFI分区 这里选“Yes”；因为我们新建分区，所以选择格式化。如果已经有EFI分区，请选择“No”
+
+    是否安装Grub：选择“Skip”；
+
+    正在安装
+
+19.创建data.img 在FAT32和NTFS分区上使用data.img 存放数据，这里一般创建4GB以上的空间，EXT4分区上则会跳过此步骤； 20.安装完成重启电脑
+
+21.启动Phoenix OS 重启可以在Grub菜单中看到Phoenix OS选项，选择此选项即可进入Phoenix OS。
+
+22.安装完成 安装教程到此结束，如果安装、使用过程中遇到问题，可以到凤凰系统的论坛进行反馈。 论坛：http://bbs.phoenixstudio.org/cn/index.php?c=thread&fid=12
